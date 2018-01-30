@@ -1,0 +1,58 @@
+{
+  "resources": {
+    "body": [
+      {
+        "type": "style",
+        "src": "./source/app.css"
+      },
+      {
+        "type": "script",
+        "src": "./source/app.js"
+      }
+    ]
+  },
+  "hooks": [
+    {
+      "endpoint": "https://express.connorpeshek.me/",
+      "events": ["option-change:account"],
+      "block": true,
+      "authenticate": ["account"],
+      "failure": {
+        "action": "notify",
+        "message": "There was an error communicating with the service."
+      }
+    },
+    {
+      "endpoint": "https://express.connorpeshek.me/channels",
+      "events": ["option-change:channels"],
+      "block": true,
+      "authenticate": ["account"],
+      "failure": {
+        "action": "notify",
+        "message": "There was an error communicating with the service."
+      }
+    }
+  ],
+  "options": {
+    "properties": {
+      "account": {
+        "title": "Slack account",
+        "order": 0,
+        "type": "object",
+        "format": "account",
+        "services": ["slack-app"]
+      },
+      "location": {
+        "title": "Channel Location",
+        "description": "Where should the Channel appear?",
+        "order": 1,
+        "type": "object",
+        "format": "element",
+        "default": {
+          "selector": "body",
+          "method": "prepend"
+        }
+      }
+    }
+  }
+}
