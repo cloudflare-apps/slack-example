@@ -12,27 +12,27 @@
     element = INSTALL.createElement(options.location, element)
 
     // Set the app attribute to your app's dash-delimited alias.
-    element.setAttribute('app', 'slack-button')
-    const button = document.createElement("button")
+    element.setAttribute('app', 'slack-thank-you')
+    const button = document.createElement('button')
     element.appendChild(button)
-    button.addEventListener("click", (e) => {
-      fetch("https://express.connorpeshek.me/button", {
-        method: "POST",
+    button.addEventListener('click', (e) => {
+      fetch('https://us-central1-slack-thank-you.cloudfunctions.net/slackPostWebhook', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          url: options.url,
-          webpage: window.location.hostname
+          endpoint: options.endpoint,
+          hostname: window.location.hostname
         })
       })
       .then(() => {
         element.removeChild(button)
-        element.innerHTML = "<h4>Thank you! The team has been alerted of your thanks :)</h4>"
+        element.innerHTML = '<h4>Thank you! The team has been alerted of your thanks :)</h4>'
       })
       .catch(() => {
         element.removeChild(button)
-        element.innerHTML = "<h4>There was a problem thanking the team. Please try again later</h4>"
+        element.innerHTML = '<h4>There was a problem thanking the team. Please try again later</h4>'
       })
     })
   }

@@ -13,18 +13,8 @@
   },
   "hooks": [
     {
-      "endpoint": "https://express.connorpeshek.me/",
+      "endpoint": "https://us-central1-slack-thank-you.cloudfunctions.net/slackExtractWebhook",
       "events": ["option-change:account"],
-      "block": true,
-      "authenticate": ["account"],
-      "failure": {
-        "action": "notify",
-        "message": "There was an error communicating with the service."
-      }
-    },
-    {
-      "endpoint": "https://express.connorpeshek.me/channels",
-      "events": ["option-change:channels"],
       "block": true,
       "authenticate": ["account"],
       "failure": {
@@ -43,8 +33,8 @@
         "services": ["slack-app"]
       },
       "location": {
-        "title": "Channel Location",
-        "description": "Where should the Channel appear?",
+        "title": "Button Location",
+        "description": "Where should the button appear?",
         "order": 1,
         "type": "object",
         "format": "element",

@@ -2,7 +2,7 @@
   "name": "@cloudflare-apps/example",
   "version": "0.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "lint": "standard --fix ./source/**/*.js || true",
     "start": "node server.js"
@@ -18,14 +18,11 @@
     "url": "https://github.com/cloudflare-apps/example-app/issues"
   },
   "homepage": "https://github.com/cloudflare-apps/example-app#readme",
-  "dependencies": {},
+  "dependencies": {
+    "simple-fetch": "^1.5.0"
+  },
   "devDependencies": {
-    "standard": "^9.0.2",
-    "body-parser": "^1.18.0",
-    "cors": "^2.8.4",
-    "express": "^4.15.4",
-    "simple-fetch": "^1.5.0",
-    "simple-json-fetch": "^1.0.1"
+    "standard": "^9.0.2"
   },
   "standard": {
     "globals": [
@@ -33,7 +30,8 @@
       "INSTALL_OPTIONS",
       "INSTALL_SCOPE",
       "INSTALL_PRODUCT",
-      "INSTALL_ID"
+      "INSTALL_ID",
+      "fetch"
     ]
   }
 }
