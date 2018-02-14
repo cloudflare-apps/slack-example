@@ -41,6 +41,12 @@
         "default": {
           "selector": "body",
           "method": "prepend"
+        },
+        "showIf": {
+          "endpoint": {
+            "op": "!=",
+            "value": ""
+          }
         }
       }
     }

@@ -1,0 +1,13 @@
+cloudflare-app[app="slack-thank-you"] button{
+  background-color: inherit;
+  height: 2em;
+  width: 2em;
+  padding: 0px;
+  border: none;
+}
+
+cloudflare-app[app="slack-thank-you"] button div{
+  background-image: url("https://i.imgur.com/KQZeT5R.png");
+  background-size: contain;
+  height: 2em;
+}

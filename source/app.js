@@ -13,29 +13,35 @@
 
     // Set the app attribute to your app's dash-delimited alias.
     element.setAttribute('app', 'slack-thank-you')
-    const button = document.createElement('button')
-    element.appendChild(button)
-    console.log(options)
-    button.addEventListener('click', (e) => {
-      fetch('https://us-central1-slack-cf.cloudfunctions.net/slackPostWebhook', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          endpoint: options.endpoint,
-          hostname: window.location.hostname
+    if (options.endpoint) {
+      const button = document.createElement('button')
+      const image = document.createElement('div')
+      const text = document.createElement('div')
+      text.innerText = "Click the icon to thank us on Slack!"
+      element.appendChild(button)
+      button.appendChild(image)
+      element.appendChild(text)
+      button.addEventListener('click', (e) => {
+        fetch('https://us-central1-slack-cf.cloudfunctions.net/slackPostWebhook', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            endpoint: options.endpoint,
+            hostname: window.location.hostname
+          })
+        })
+        .then(() => {
+          element.removeChild(button)
+          element.innerHTML = '<h4>Thank you! The team has been alerted of your thanks :)</h4>'
+        })
+        .catch(() => {
+          element.removeChild(button)
+          element.innerHTML = '<h4>There was a problem thanking the team. Please try again later</h4>'
         })
       })
-      .then(() => {
-        element.removeChild(button)
-        element.innerHTML = '<h4>Thank you! The team has been alerted of your thanks :)</h4>'
-      })
-      .catch(() => {
-        element.removeChild(button)
-        element.innerHTML = '<h4>There was a problem thanking the team. Please try again later</h4>'
-      })
-    })
+    }
   }
 
   // INSTALL_SCOPE is an object that is used to handle option changes without refreshing the page.
