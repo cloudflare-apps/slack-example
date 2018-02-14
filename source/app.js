@@ -15,8 +15,9 @@
     element.setAttribute('app', 'slack-thank-you')
     const button = document.createElement('button')
     element.appendChild(button)
+    console.log(options)
     button.addEventListener('click', (e) => {
-      fetch('https://us-central1-slack-thank-you.cloudfunctions.net/slackPostWebhook', {
+      fetch('https://us-central1-slack-cf.cloudfunctions.net/slackPostWebhook', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

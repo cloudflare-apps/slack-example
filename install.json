@@ -13,7 +13,7 @@
   },
   "hooks": [
     {
-      "endpoint": "https://us-central1-slack-thank-you.cloudfunctions.net/slackExtractWebhook",
+      "endpoint": "https://us-central1-slack-cf.cloudfunctions.net/slackExtractWebhook",
       "events": ["option-change:account"],
       "block": true,
       "authenticate": ["account"],
@@ -30,7 +30,7 @@
         "order": 0,
         "type": "object",
         "format": "account",
-        "services": ["slack-app"]
+        "services": ["slack-thank-you"]
       },
       "location": {
         "title": "Button Location",

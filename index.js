@@ -4,17 +4,15 @@ function handlePost (req, res) {
   res.set('Access-Control-Allow-Origin', '*')
   res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   res.set('Access-Control-Allow-Methods', 'OPTIONS, GET, POST')
-  const {url, hostname} = req.body
+  const {endpoint, hostname} = req.body
 
-  simpleFetch.postJson(url, {
+  simpleFetch.postJson(endpoint, {
     text: `A big thank you from a visitor at ${hostname}`
   })
- .then((thing) => {
-   console.log(thing)
+ .then(() => {
    res.status(200).send(true)
  })
- .catch((thing) => {
-   console.log(thing)
+ .catch(() => {
    res.status(401).send(false)
  })
 }
@@ -30,7 +28,7 @@ exports.slackExtractWebhook = (req, res) => {
   const {install} = req.body
   const {url} = req.body.authentications.account.token.extra.incoming_webhook
 
-  install.options.url = url
+  install.options.endpoint = url
   res.send({install, proceed: true})
 }
 
